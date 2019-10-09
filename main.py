@@ -6,8 +6,10 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from model import Donation, Donor
 
 app = Flask(__name__)
-app.secret_key = b''
-
+try:
+    app.secret_key = os.environ.get('SECRET_KEY').encode()
+except AttributeError:
+    print('Environment variable not found: SECRET_KEY')
 
 @app.route('/')
 def home():
