@@ -21,8 +21,6 @@ def all():
 
 @app.route('/create/', methods=['POST', 'GET'])
 def create():
-    # if 'username' not in session:
-    #     return redirect(url_for('login'))
     if request.method == 'POST':
         donor_name = Donor.get_or_none(Donor.name == request.form['name'])
         if donor_name is None:
